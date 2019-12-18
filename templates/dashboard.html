@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        {% for user in users %}
+            {% for key, value in user.items() %}
+            <title>Hi {{ key }} </title>
+            Hi {{ key.value }}
+            {% endfor %}
+        {% endfor %}
+    </head>
+    <body>
+        <table border = 5>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th> Page Count </th>
+                <th> Average Rating </th>
+            </tr>
+            {% for book in books %}
+                {% for key, value in book.items() %}
+                <tr>
+                    <td>{{  value.title  }}</td>
+                    <td>{{ value.author }}</td>
+                    <td>{{ value['page count'] }}</td>
+                    <td>{{ value['average rating'] }}</td>
+                </tr>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    </body>
+</html>
