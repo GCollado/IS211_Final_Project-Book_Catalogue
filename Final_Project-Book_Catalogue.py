@@ -1,6 +1,11 @@
 from flask import Flask, flash, redirect, render_template, request, url_for, session
+# install Flask-Session
+#from flask.ext.session import Session
 
 app = Flask(__name__)
+SESSION_TYPE = 'redis'
+app.config.from_object(__name__)
+#Session(app)
 
 books = [
     {1:{'title': 'of Mice and Men',
@@ -40,12 +45,15 @@ def login():
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
+    error = ''
     if request.method == 'POST':
         if request.form['username'] == 'admin' and request.form['password'] == 'admin':
             return render_template('dashboard.html', books = books, users=users)
         else:
-            flash('Invalid username and/or password entered. Please try again.')
-            return redirect(url_for('login'))
+            error = 'Invalid username and/or password entered. Please try again.'
+    return render_template('login.html', error=error)
+
+
 
 @app.route('/add_book')
 def add_book():
