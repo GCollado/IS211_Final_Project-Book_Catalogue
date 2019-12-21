@@ -11,11 +11,14 @@
                     <label for="username"><b>Username: </b></label>
                     <input type="text" name="username" required>
 
-                    <br><label for="password" ><b>Password: </b></label>
+                    <br><label for="password"><b>Password: </b></label>
                     <input type="password" name="password" required>
 
-                    <br><button type="submit">Login</button>
+                    <br><input type="submit" value="Login">
             </fieldset>
         </form>
+            {% if error %}
+                <b>{{ error }}</b>
+            {% endif %}
     </body>
 </html>
