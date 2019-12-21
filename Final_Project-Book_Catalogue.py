@@ -1,6 +1,7 @@
 from flask import Flask, flash, redirect, render_template, request, url_for, session
 # install Flask-Session
 #from flask.ext.session import Session
+import os
 
 app = Flask(__name__)
 SESSION_TYPE = 'redis'
@@ -48,28 +49,31 @@ def dashboard():
     error = ''
     if request.method == 'POST':
         if request.form['username'] == 'admin' and request.form['password'] == 'admin':
-            return render_template('dashboard.html', books = books, users=users)
+            return render_template('dashboard.html', books=books, users=users)
         else:
             error = 'Invalid username and/or password entered. Please try again.'
     return render_template('login.html', error=error)
 
 
-
 @app.route('/add_book')
 def add_book():
-    pass
+    return render_template('add_book.html')
+
 
 @app.route('/remove_book')
 def remove_book():
     pass
 
+
 @app.route('/clear')
 def clear_books():
-    pass
+    return render_template('clear_books.html')
+
 
 @app.route('/logout')
 def logout():
     pass
+
 
 if __name__ == '__main__':
     app.run(debug=True)
