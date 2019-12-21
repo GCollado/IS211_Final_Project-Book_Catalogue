@@ -3,9 +3,11 @@
     <head>
         <meta charset="UTF-8">
         {% for user in users %}
-            {% for key, value in user.items() %}
-            <title>Hi {{ key }} </title>
-            Hi {{ key.value }}
+            {% for  key, value in user.items() %}
+                {% if value.username == request.form['username'] %}
+                    <title>Hi {{ value.username }} </title>
+                <h1>Hi {{ value.username }}!</h1>
+                {% endif %}
             {% endfor %}
         {% endfor %}
     </head>
@@ -24,7 +26,6 @@
                     <td>{{ value.author }}</td>
                     <td>{{ value['page count'] }}</td>
                     <td>{{ value['average rating'] }}</td>
-                </tr>
                 </tr>
                 {% endfor %}
             {% endfor %}
