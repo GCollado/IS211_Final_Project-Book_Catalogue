@@ -1,11 +1,15 @@
+#!/usr/bin/env python
+# -*- coding = utf-8 -*-
+
 from flask import Flask, flash, redirect, render_template, request, url_for, session
 # install Flask-Session
 #from flask.ext.session import Session
 import os
 
 app = Flask(__name__)
-SESSION_TYPE = 'redis'
-app.config.from_object(__name__)
+app.secret_key = "The password is swordfish"
+#SESSION_TYPE = 'redis'
+#app.config.from_object(__name__)
 #Session(app)
 
 books = [
@@ -38,6 +42,7 @@ users = [
     }
 ]
 
+
 @app.route('/')
 @app.route('/login')
 def login():
@@ -49,6 +54,7 @@ def dashboard():
     error = ''
     if request.method == 'POST':
         if request.form['username'] == 'admin' and request.form['password'] == 'admin':
+            session['username'] = 'admin'
             return render_template('dashboard.html', books=books, users=users)
         else:
             error = 'Invalid username and/or password entered. Please try again.'
@@ -72,7 +78,8 @@ def clear_books():
 
 @app.route('/logout')
 def logout():
-    pass
+    session.pop('username', None)
+    return redirect(url_for('login'))
 
 
 if __name__ == '__main__':
