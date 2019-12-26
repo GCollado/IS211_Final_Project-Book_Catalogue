@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+         <meta charset="UTF-8">
         {% for user in users %}
             {% for  key, value in user.items() %}
                 {% if value.username == request.form['username'] %}
@@ -10,8 +10,16 @@
                 {% endif %}
             {% endfor %}
         {% endfor %}
+
     </head>
+
     <body>
+        {% block content %}
+        <a href="{{ url_for('add_book') }}">Add Book</a> |
+        <a href="{{ url_for('clear_books') }}">Clear Books</a> |
+        <a href="{{ url_for('logout') }}">Logout</a>
+        {% endblock %}
+
         <table border = 5>
             <tr>
                 <th>Author</th>
