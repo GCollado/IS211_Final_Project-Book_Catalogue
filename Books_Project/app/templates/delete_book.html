@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <hi>Delete Book</hi>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+            <p>
+                {{ form.book_title.label }}<br>
+                {{ form.book_title(size=32) }}<br>
+                {% for error in form.book_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.book_author.label }}<br>
+                {{ form.book_author(size=32) }}<br>
+                {% for error in form.book_author.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.page_total.label }}<br>
+                {{ form.page_total }}<br>
+                {% for error in form.page_total.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+           <p>
+                {{ form.isbn10.label }}<br>
+                {{ form.isbn10 }}<br>
+                {% for error in form.isbn10.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.isbn10.label }}<br>
+                {{ form.isbn10(size=10) }}<br>
+                {% for error in form.isbn10.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <p>{{ form.isbn13.label }}<br>
+                {{ form.isbn13(size=13) }}<br>
+                {% for error in form.isbn13.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
