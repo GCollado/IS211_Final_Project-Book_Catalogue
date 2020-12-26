@@ -17,7 +17,7 @@
         {% if current_user.is_anonymous %}
         <a href="{{ url_for('login') }}">Login</a>
         {% else %}
-        <a href="{{ url_for('user', username=current_user.username }}">Profile</a>
+        <a href="{{ url_for('user', username=current_user.username) }}">Profile</a>
         <a href="{{ url_for('add_book') }}">Add Book</a>
         <a href="{{ url_for('delete_book') }}">Delete Book</a>
         <a href="{{ url_for('clear_books') }}">Clear Books</a>
